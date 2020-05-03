@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
-import { ProductCatalogComponent } from './modules/product-catalog/product-catalog.component';
+import { CatalogListComponent } from './modules/catalog/catalog-list/catalog-list.component';
 
 
 const routes: Routes = [{
@@ -12,8 +12,8 @@ const routes: Routes = [{
     path: '',
     component: DashboardComponent
   },{
-    path:'product-catalog',
-    component: ProductCatalogComponent
+    path:'catalog',
+    component: CatalogListComponent
   }]
 }];
 

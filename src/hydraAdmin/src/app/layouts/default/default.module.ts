@@ -7,19 +7,21 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 
 import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.component';
-import { ProductCatalogComponent } from 'src/app/modules/product-catalog/product-catalog.component';
+//import { CatalogListComponent } from 'src/app/modules/catalog/catalog-list/catalog-list.component';
+import { CatalogListModule } from 'src/app/modules/catalog/catalog-list/catalog-list.module';
 
 
 @NgModule({
   declarations: [
     DefaultComponent,
-    DashboardComponent,
-    ProductCatalogComponent
+    DashboardComponent
+    // CatalogListComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
+    CatalogListModule,
     MatSidenavModule,
     MatDividerModule
   ]
