@@ -1,0 +1,41 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+       <button mat-icon-button (click)="toggleSidebar()">
+           <mat-icon>menu</mat-icon>
+       </button>
+       <span> Hydra Administrator </span>
+
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+            <ul fxLayout="row" fxLayoutGap="20px">
+                <li>
+                    <button mat-icon-button>
+                        <mat-icon>settings</mat-icon>
+                    </button>
+                </li>
+                <li>
+                    <button mat-icon-button>
+                        <mat-icon>help_outline</mat-icon>
+                    </button>
+                </li>
+                <li>
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        <mat-icon>person_outline</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <div class="profile-card">
+                            <div class="header">
+                                <h2>Alexandre Yembo</h2>
+                                <h4>alexandreyembo@gmail.com</h4>
+                            </div>
+                            <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Alexandre Yembo">
+                        </div>
+                      <button mat-menu-item>
+                          <mat-icon>exit_to_app</mat-icon>
+                          Sign out
+                      </button>
+                    </mat-menu>
+                </li>
+            </ul>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
