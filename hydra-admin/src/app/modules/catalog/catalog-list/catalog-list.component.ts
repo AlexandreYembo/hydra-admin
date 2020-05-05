@@ -39,9 +39,6 @@ export class CatalogListComponent implements OnInit {
     this.users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
     this.createColumns();
     this.dataTable.dataSource = this.users;
-
-    // Assign the data to the data source for the table to render
-  //  this.dataSource = new MatTableDataSource(users);
   }
   ngOnInit(): void {
   }
