@@ -35,7 +35,6 @@ export class CatalogListComponent implements OnInit {
   columns: DataTableColumns[]; //= ['id', 'name', 'progress', 'color'];
 
   constructor() {
-      // Create 100 users
     this.users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
     this.createColumns();
     this.dataTable.dataSource = this.users;
