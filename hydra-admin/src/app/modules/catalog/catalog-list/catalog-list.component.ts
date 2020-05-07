@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataTable, DataTableColumns } from 'src/app/components/data-table-datasource';
 
 export interface UserData {
@@ -42,12 +42,28 @@ export class CatalogListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  editTest(element: any){
+    alert('hi ' + element.name);
+  }
+
   createColumns(): void{
-    this.dataTable.columns = [
-      { columnDef: 'id', header: 'No.' },
-      { columnDef: 'name', header: 'Name'    },
-      { columnDef: 'progress', header: 'My Progress'  },
-      { columnDef: 'color', header: 'My Color'  },
+    this.dataTable.columns = [ 
+      new DataTableColumns('id', 'No'), 
+      new DataTableColumns('name', 'Name'), 
+      new DataTableColumns('progress', 'My Progress'), 
+      new DataTableColumns('color', 'My Color'), 
+     
+      { columnDef: 'action', header: 'Actions', 
+        actions: {
+                  edit: {
+                          fn: this.editTest //'editTest()'
+                  },
+                  delete: {
+                    fn: this.editTest //'editTest()'
+                  },
+                  style: 'width: 100px'
+            }
+      }
     ];
   }
 }

@@ -7,6 +7,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 
 import { DataTableComponent } from './data-table.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { DataTableComponent } from './data-table.component';
     MatInputModule,
     MatPaginatorModule,
     MatSortModule,
+    MatIconModule,
     MatTableModule
   ],
   exports: [
