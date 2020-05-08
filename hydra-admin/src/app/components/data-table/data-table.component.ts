@@ -2,7 +2,8 @@ import {Component, OnInit, ViewChild, Input} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { DataTable, DataTableColumns } from '../data-table-datasource';
+import { DataTable, DataTableColumns } from './data-table-datasource';
+import { ActionsToolbarConfig } from '../actions-toolbar/actions-toolbar-config';
 
 @Component({
   selector: 'app-data-table',
@@ -12,6 +13,7 @@ import { DataTable, DataTableColumns } from '../data-table-datasource';
 export class DataTableComponent implements OnInit {
   displayedColumns: string[];
   columns: DataTableColumns[];
+  toolbarParameter: ActionsToolbarConfig
   
   //input variable -> receives the data from a component to render the grid.
   @Input() dataTable: DataTable;
@@ -25,6 +27,9 @@ export class DataTableComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.toolbarParameter = new ActionsToolbarConfig();
+    this.toolbarParameter.editButton.fn = this.testFn;
+    
     //Bind the arrayObject to the grid
     
     this.columns = this.dataTable.columns;
@@ -33,6 +38,10 @@ export class DataTableComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.dataTable.dataSource);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  testFn(){
+    alert('edit');
   }
 
   applyFilter(event: Event) {

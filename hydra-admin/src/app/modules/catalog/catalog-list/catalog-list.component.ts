@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataTable, DataTableColumns } from 'src/app/components/data-table-datasource';
+import { DataTable, DataTableColumns } from 'src/app/components/data-table/data-table-datasource';
 
 export interface UserData {
   id: string;

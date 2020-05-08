@@ -8,6 +8,7 @@ import {MatTableModule} from '@angular/material/table';
 
 import { DataTableComponent } from './data-table.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ActionsToolbarModule } from '../actions-toolbar/actions-toolbar.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    ActionsToolbarModule
   ],
   exports: [
     DataTableComponent
