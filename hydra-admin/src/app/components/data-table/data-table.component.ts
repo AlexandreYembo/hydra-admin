@@ -3,7 +3,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { DataTable, DataTableColumns } from './data-table-datasource';
-import { ActionsToolbarConfig } from '../actions-toolbar/actions-toolbar-config';
+import { ActionsToolbarConfig, ActionsToolbarButtons } from '../actions-toolbar/actions-toolbar-config';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-data-table',
@@ -24,11 +25,21 @@ export class DataTableComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.toolbarParameter = new ActionsToolbarConfig();
-    this.toolbarParameter.editButton.fn = this.testFn;
+    this.toolbarParameter.newButton.isVisible = true;
+    this.toolbarParameter.newButton.fn = this.newRecord;
+
+    //begin create menu
+    this.toolbarParameter.menu.menuButton.isVisible = true;
+    this.toolbarParameter.addItemToMenu(new ActionsToolbarButtons('Print', true, 'print'));
+    this.toolbarParameter.addItemToMenu(new ActionsToolbarButtons('Archive', true, 'archive'));
+    this.toolbarParameter.addItemToMenu(new ActionsToolbarButtons('Export',  true, 'import_export'));
+
+    //end
+
     
     //Bind the arrayObject to the grid
     
@@ -40,8 +51,8 @@ export class DataTableComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  testFn(){
-    alert('edit');
+  newRecord(){
+    this.router.navigate(['new'], {relativeTo: this.activatedRoute, queryParamsHandling: 'preserve'})
   }
 
   applyFilter(event: Event) {

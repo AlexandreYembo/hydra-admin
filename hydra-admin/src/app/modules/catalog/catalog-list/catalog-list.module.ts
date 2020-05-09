@@ -9,7 +9,7 @@ import { CatalogListComponent } from './catalog-list.component';
   declarations: [CatalogListComponent],
   imports: [
     CommonModule,
-    DataTableModule,
+    DataTableModule
   ],
   exports:[
     CatalogListComponent

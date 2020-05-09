@@ -3,57 +3,31 @@
        <span> {{parameter.title}} </span>
         <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
             <ul fxLayout="row" fxLayoutGap="20px">
-                <li *ngIf="parameter.editButton.visible == true">
-                    <button mat-raised-button (click)="[parameter.editButton.fn()]"><mat-icon>edit</mat-icon>{{ parameter.editButton.name }}</button>
+                <li *ngIf="parameter.newButton.isVisible == true">
+                    <button mat-raised-button (click)="[parameter.newButton.fn && parameter.newButton.fn()]"><mat-icon>add</mat-icon>{{ parameter.newButton.name }}</button>
                 </li>
-                <li *ngIf="parameter.saveButton.visible == true">
-                    <button mat-raised-button color="primary"><mat-icon>save</mat-icon> {{ parameter.saveButton.name }}</button>
+                <li *ngIf="parameter.editButton.isVisible == true">
+                    <button mat-raised-button (click)="[parameter.editButton.fn && parameter.editButton.fn()]"><mat-icon>edit</mat-icon>{{ parameter.editButton.name }}</button>
                 </li>
-                <li>
-                    <button mat-raised-button color="warn"><mat-icon>delete</mat-icon> Delete</button>
+                <li *ngIf="parameter.saveButton.isVisible == true">
+                    <button mat-raised-button color="primary" (click)="[parameter.saveButton.fn && parameter.saveButton.fn()]"><mat-icon>save</mat-icon> {{ parameter.saveButton.name }}</button>
                 </li>
-                <li>
+                <li *ngIf="parameter.deleteButton.isVisible == true">
+                    <button mat-raised-button color="warn" (click)="[parameter.deleteButton.fn && parameter.deleteButton.fn()]"><mat-icon>delete</mat-icon> {{ parameter.deleteButton.name }}</button>
+                </li>
+                <li *ngIf="parameter.menu.menuButton.isVisible == true">
                     <button mat-button [matMenuTriggerFor]="menu" color="primary">
-                        <mat-icon color="primary">more_vert</mat-icon> Actions
+                        <mat-icon color="primary">more_vert</mat-icon> {{parameter.menu.menuButton.name}}
                     </button>
-                    <mat-menu #menu="matMenu">
-                      <button mat-menu-item>
-                          <mat-icon>exit_to_app</mat-icon>
-                          Sign out
-                    </button>
-                    <button mat-menu-item>
-                        <mat-icon>exit_to_app</mat-icon>
-                        Sign out
-                  </button>
-                  <button mat-menu-item>
-                    <mat-icon>exit_to_app</mat-icon>
-                    Sign out
-              </button>
-                    </mat-menu>
-                </li>
-                <!-- <li>
-                    <button mat-icon-button>
-                        <mat-icon>help_outline</mat-icon>
-                    </button>
-                </li>
-                <li>
-                    <button mat-button [matMenuTriggerFor]="menu">
-                        <mat-icon>person_outline</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu">
-                        <div class="profile-card">
-                            <div class="header">
-                                <h2>Alexandre Yembo</h2>
-                                <h4>alexandreyembo@gmail.com</h4>
-                            </div>
-                            <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Alexandre Yembo">
-                        </div>
-                      <button mat-menu-item>
-                          <mat-icon>exit_to_app</mat-icon>
-                          Sign out
+                    <mat-menu #menu="matMenu" color="primary">
+                      <div *ngFor="let item of parameter.menu.items">
+                        <button mat-menu-item *ngIf="item.isVisible == true">
+                            <mat-icon> {{item.icon}}</mat-icon>
+                            {{item.name}}
                       </button>
+                      </div>
                     </mat-menu>
-                </li> -->
+                </li>
             </ul>
         </div>
     </mat-toolbar-row>
