@@ -1,1 +1,27 @@
-<p>catalog-edit works!</p>
+<app-actions-toolbar [parameter]="toolbarParameter" [title]="'New Catalog'"></app-actions-toolbar>
+<mat-divider></mat-divider>
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Ex. Eletronic">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Select</mat-label>
+    <mat-select>
+      <mat-option value="option">TV</mat-option>
+      <mat-option value="option">Computer</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-mini-fab color="primary"><mat-icon>add</mat-icon></button>
+  <!-- <mat-form-field class="example-full-width">
+    <mat-label>Leave a comment</mat-label>
+    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+  </mat-form-field> -->
+</form>
+
+
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

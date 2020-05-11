@@ -1,6 +1,6 @@
 <mat-toolbar>
     <mat-toolbar-row>
-       <span> {{parameter.title}} </span>
+       <span> {{title}} </span>
         <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
             <ul fxLayout="row" fxLayoutGap="20px">
                 <li *ngIf="parameter.newButton.isVisible == true">
@@ -14,6 +14,9 @@
                 </li>
                 <li *ngIf="parameter.deleteButton.isVisible == true">
                     <button mat-raised-button color="warn" (click)="[parameter.deleteButton.fn && parameter.deleteButton.fn()]"><mat-icon>delete</mat-icon> {{ parameter.deleteButton.name }}</button>
+                </li>
+                <li *ngIf="parameter.backButton.isVisible == true">
+                    <button mat-raised-button (click)="[parameter.backButton.fn && parameter.backButton.fn()]"><mat-icon>keyboard_backspace</mat-icon>{{ parameter.backButton.name }}</button>
                 </li>
                 <li *ngIf="parameter.menu.menuButton.isVisible == true">
                     <button mat-button [matMenuTriggerFor]="menu" color="primary">

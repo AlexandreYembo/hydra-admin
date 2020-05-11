@@ -8,6 +8,7 @@ import { ActionsToolbarConfig } from './actions-toolbar-config';
 })
 export class ActionsToolbarComponent implements OnInit {
   @Input() parameter: ActionsToolbarConfig;
+  @Input() title: string;
   constructor() { }
 
   ngOnInit(): void {

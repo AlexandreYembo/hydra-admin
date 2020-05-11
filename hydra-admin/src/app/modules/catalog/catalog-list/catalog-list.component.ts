@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataTable, DataTableColumns } from 'src/app/components/data-table/data-table-datasource';
+import { Router, ActivatedRoute } from '@angular/router';
 
 export interface UserData {
   id: string;
@@ -7,12 +8,6 @@ export interface UserData {
   progress: string;
   color: string;
 }
-
-// export interface DataTable {
-//   dataSource: UserData[],
-//   columns: ['id', 'name', 'progress', 'color'],
-//   display: ['Id', 'Name', 'My Progress', 'My Color']
-// }
 
 /** Constants used to fill up our data base. */
 const COLORS: string[] = [
@@ -32,9 +27,9 @@ const NAMES: string[] = [
 export class CatalogListComponent implements OnInit {
   users: UserData[];
   dataTable: DataTable = new DataTable();
-  columns: DataTableColumns[]; //= ['id', 'name', 'progress', 'color'];
+  columns: DataTableColumns[];
 
-  constructor() {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     this.users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
     this.createColumns();
     this.dataTable.dataSource = this.users;
