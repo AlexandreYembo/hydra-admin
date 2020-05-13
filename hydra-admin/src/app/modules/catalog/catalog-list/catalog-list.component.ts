@@ -27,7 +27,6 @@ const NAMES: string[] = [
 export class CatalogListComponent implements OnInit {
   users: UserData[];
   dataTable: DataTable = new DataTable();
-  columns: DataTableColumns[];
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     this.users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
@@ -43,12 +42,12 @@ export class CatalogListComponent implements OnInit {
 
   createColumns(): void{
     this.dataTable.columns = [ 
-      new DataTableColumns('id', 'No'), 
-      new DataTableColumns('name', 'Name'), 
-      new DataTableColumns('progress', 'My Progress'), 
-      new DataTableColumns('color', 'My Color'), 
+      new DataTableColumns('id', 'No', 'width: 10%'), 
+      new DataTableColumns('name', 'Name', 'width: 40%'), 
+      new DataTableColumns('progress', 'My Progress', 'width: 10%'),
+      new DataTableColumns('color', 'My Color', 'width: 10%'), 
      
-      { columnDef: 'action', header: 'Actions', 
+      { columnDef: 'action', header: 'Actions', style: 'width: 80px;',
         actions: {
                   edit: {
                           fn: this.editTest //'editTest()'
@@ -56,7 +55,6 @@ export class CatalogListComponent implements OnInit {
                   delete: {
                     fn: this.editTest //'editTest()'
                   },
-                  style: 'width: 100px'
             }
       }
     ];

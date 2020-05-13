@@ -17,8 +17,8 @@ export class DataTableComponent implements OnInit {
   toolbarParameter: ActionsToolbarConfig;
   //input variable -> receives the data from a component to render the grid.
   @Input() dataTable: DataTable;
-  @Input() title: string
-
+  @Input() title: string;
+  @Input() showActionToolbar: boolean;
   //Generic dataSource --> Accept any type of array
   dataSource: MatTableDataSource<any>;
   
@@ -29,7 +29,9 @@ export class DataTableComponent implements OnInit {
 
   ngOnInit() {
    this.configure();
-   this.configureToolbar();
+
+   if(this.showActionToolbar)
+    this.configureToolbar();
   }
 
   configure(){
@@ -57,7 +59,7 @@ export class DataTableComponent implements OnInit {
   onNewRecord(){
     this.router.navigate(['new'], {relativeTo: this.activatedRoute, queryParamsHandling: 'preserve'})
   }
-
+  
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

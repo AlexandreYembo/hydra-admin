@@ -14,6 +14,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.component';
 import { CatalogListModule } from 'src/app/modules/catalog/catalog-list/catalog-list.module';
 import { CatalogEditModule } from './modules/catalog/catalog-edit/catalog-edit.module';
+import { CategoryService } from './services/category.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { CatalogEditModule } from './modules/catalog/catalog-edit/catalog-edit.m
     MatSidenavModule,
     MatDividerModule
   ],
-  providers: [],
+  providers: [CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

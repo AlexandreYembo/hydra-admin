@@ -12,10 +12,10 @@
     <table mat-table [dataSource]="dataSource" matSort>
       <!-- Begin generic column definition -->
       <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.header }} </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header [style]="column.style"> {{ column.header }} </th>
         <td mat-cell *matCellDef="let row">
-          <div *ngIf="column.actions == null">{{row[column.columnDef]}}</div>
-          <div [style]="column.actions.style" *ngIf="column.actions != null">
+          <div *ngIf="column.actions == null" mat-cell>{{row[column.columnDef]}}</div>
+          <div [style]="column.style" *ngIf="column.actions != null">
             
             <button *ngIf="column.actions.edit != null" class="mat-focus-indicator mat-icon-button mat-button-base mat-primary ng-star-inserted" color="primary" mat-icon-button="" 
             mattooltip="Edit customer" aria-describedby="cdk-describedby-message-5" cdk-describedby-host="" (click)="[column.actions.edit.fn(row)]">
