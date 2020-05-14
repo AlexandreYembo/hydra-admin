@@ -6,7 +6,7 @@ import { DataTable, DataTableColumns } from './data-table-datasource';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActionsToolbarConfig, ActionsToolbarButtons } from '../actions-toolbar/actions-toolbar-config';
 import { DataTableState } from './store/models/data-table-state';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AddItemAction } from './store/data-list.action';
 
@@ -32,17 +32,31 @@ export class DataTableComponent implements OnInit {
 
   constructor(public router: Router, public activatedRoute: ActivatedRoute, private store: Store<DataTableState>) { }
 
-  ngOnInit() {
-    console.log(this.store);
 
-    this.dataTable$ = this.store.select(store => store.dataTable);
-    
-    this.dataTable$.subscribe(dataResult => {
-      console.log('hi');
-      console.log(dataResult);
-      this.dataSource = new MatTableDataSource(dataResult.dataSource);
-      this.configure();
+
+  ngOnInit() {
+    this.store.pipe(select(selectTable)).subscribe(dataResult => {
+      if(!this.dataSource){
+        this.dataSource = new MatTableDataSource(dataResult.dataSource);
+        this.configure();
+      }
+      else{
+        this.dataSource.data = dataResult.dataSource;
+        // const totalPages = this.dataSource.data.length / this.dataSource.paginator.pageSize;
+        // if(this.dataSource.paginator.hasPreviousPage() && this.dataSource.paginator.pageIndex >= totalPages){
+        //   this.dataSource.paginator.previousPage();
+        // }
+      }
     });
+    // this.dataTable$ = this.store.select(store => store.dataTable);
+    
+    // this.dataTable$.subscribe(dataResult => {
+    //   console.log('hi');
+    //   console.log(dataResult);
+      
+    //   // this.dataSource = new MatTableDataSource(dataResult.dataSource);
+    //   this.configure();
+    // });
 
 
    if(this.showActionToolbar)
@@ -88,3 +102,7 @@ export class DataTableComponent implements OnInit {
     }
   }
 }
+
+const selectTable = (state: DataTableState) => {
+  return state.dataTable;
+};

@@ -9,8 +9,8 @@
   <mat-divider></mat-divider>
 
   <div class="mat-elevation-z8">
-    <!-- <table mat-table [dataSource]="dataSource" matSort> -->
-    <table mat-table [dataSource]="dataTable$ | async" matSort>
+    <table mat-table [dataSource]="dataSource" matSort>
+    <!-- <table mat-table [dataSource]="dataTable$ | async" matSort> -->
 
       <!-- Begin generic column definition -->
       <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">

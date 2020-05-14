@@ -9,7 +9,7 @@ import { DataTable } from '../data-table-datasource';
 
 export const initialState: DataTable = new DataTable();
 
-initialState.dataSource = [{name: 'initial'}];
+initialState.dataSource = [{name: 'initial'}, {name: 'initial'}, {name: 'initial'}, {name: 'initial'}, {name: 'initial'}, {name: 'initial'}, {name: 'initial'}];
 
 export function DatalistReducer(state: DataTable = initialState, action: DataTableAction){
     switch (action.type) {
