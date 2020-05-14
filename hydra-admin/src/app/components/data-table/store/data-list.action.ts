@@ -25,4 +25,4 @@ export class UpdateItemAction implements Action {
     constructor(public payload : any){}
 }
 
-export type DataTableAction = AddItemAction | RemoveItemAction | UpdateItemAction;
+export type DataSourceAction = AddItemAction | RemoveItemAction | UpdateItemAction;
