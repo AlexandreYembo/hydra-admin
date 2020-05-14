@@ -5,6 +5,10 @@ import {MatTableDataSource} from '@angular/material/table';
 import { DataTable, DataTableColumns } from './data-table-datasource';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActionsToolbarConfig, ActionsToolbarButtons } from '../actions-toolbar/actions-toolbar-config';
+import { DataTableState } from './store/models/data-table-state';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AddItemAction } from './store/data-list.action';
 
 @Component({
   selector: 'app-data-table',
@@ -21,24 +25,39 @@ export class DataTableComponent implements OnInit {
   @Input() showActionToolbar: boolean;
   //Generic dataSource --> Accept any type of array
   dataSource: MatTableDataSource<any>;
+  dataTable$: Observable<DataTable>;
   
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(public router: Router, public activatedRoute: ActivatedRoute) { }
+  constructor(public router: Router, public activatedRoute: ActivatedRoute, private store: Store<DataTableState>) { }
 
   ngOnInit() {
-   this.configure();
+    console.log(this.store);
+
+    this.dataTable$ = this.store.select(store => store.dataTable);
+    
+    this.dataTable$.subscribe(dataResult => {
+      console.log('hi');
+      console.log(dataResult);
+      this.dataSource = new MatTableDataSource(dataResult.dataSource);
+      this.configure();
+    });
+
 
    if(this.showActionToolbar)
     this.configureToolbar();
+  }
+
+  bind(obj: any){
+    this.store.dispatch(new AddItemAction(obj));
   }
 
   configure(){
     this.columns = this.dataTable.columns;
     this.displayedColumns = this.columns.map(c => c.columnDef);
 
-    this.dataSource = new MatTableDataSource(this.dataTable.dataSource);
+   // this.dataSource = new MatTableDataSource(this.dataTable.dataSource);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

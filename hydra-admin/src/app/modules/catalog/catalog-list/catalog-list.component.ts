@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataTable, DataTableColumns } from 'src/app/components/data-table/data-table-datasource';
-import { Router, ActivatedRoute } from '@angular/router';
+import { DataTableComponent } from 'src/app/components/data-table/data-table.component';
 
 export interface UserData {
   id: string;
@@ -28,16 +28,22 @@ export class CatalogListComponent implements OnInit {
   users: UserData[];
   dataTable: DataTable = new DataTable();
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(public dataTableComponent: DataTableComponent) {
     this.users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
     this.createColumns();
-    this.dataTable.dataSource = this.users;
+    setTimeout(() =>  dataTableComponent.bind({name: 'alex'}), 5000 );
+
+    //this.dataTable.dataSource = this.users;
   }
   ngOnInit(): void {
   }
 
   editTest(element: any){
     alert('hi ' + element.name);
+  }
+
+  addTest(){
+    this.dataTableComponent.bind({name: 'new alex'})
   }
 
   createColumns(): void{
