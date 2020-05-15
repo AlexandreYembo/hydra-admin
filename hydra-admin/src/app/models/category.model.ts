@@ -1,4 +1,4 @@
-export interface CategoryModel {
-    id: number;
-    name: string;
+export class CategoryModel {
+    public id: number;
+    public name: string;
   }

@@ -9,8 +9,8 @@ import {MatTableModule} from '@angular/material/table';
 import { DataTableComponent } from './data-table.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ActionsToolbarModule } from '../actions-toolbar/actions-toolbar.module';
-import { StoreModule } from '@ngrx/store';
-import { DataSourceReducer } from './store/data-list.reducer';
+// import { StoreModule } from '@ngrx/store';
+//import { DataSourceReducer } from './store/data-list.reducer';
 
 
 @NgModule({
@@ -26,10 +26,10 @@ import { DataSourceReducer } from './store/data-list.reducer';
     MatIconModule,
     MatTableModule,
     ActionsToolbarModule,
-    StoreModule.forRoot({
-      dataSource: DataSourceReducer
-      //dataTable: DatalistReducer
-    })
+    // StoreModule.forRoot({
+    //   //dataSource: DataSourceReducer
+    //   //dataTable: DatalistReducer
+    // })
   ],
   exports: [
     DataTableComponent

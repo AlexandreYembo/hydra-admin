@@ -30,48 +30,37 @@ export class DataTableComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(public router: Router, public activatedRoute: ActivatedRoute, private store: Store<DataSourceState>) { }
+  constructor(public router: Router, public activatedRoute: ActivatedRoute){}//, private store: Store<DataSourceState>) { }
 
 
 
   ngOnInit() {
-    this.store.pipe(select(state => state)).subscribe(dataResult => {
-      if(!this.dataSource){
-        this.dataSource = new MatTableDataSource(dataResult.dataSource);
-        this.configure();
-      }
-      else{
-        this.dataSource.data = dataResult.dataSource;
-        // const totalPages = this.dataSource.data.length / this.dataSource.paginator.pageSize;
-        // if(this.dataSource.paginator.hasPreviousPage() && this.dataSource.paginator.pageIndex >= totalPages){
-        //   this.dataSource.paginator.previousPage();
-        // }
-      }
-    });
-    // this.dataTable$ = this.store.select(store => store.dataTable);
-    
-    // this.dataTable$.subscribe(dataResult => {
-    //   console.log('hi');
-    //   console.log(dataResult);
-      
-    //   // this.dataSource = new MatTableDataSource(dataResult.dataSource);
-    //   this.configure();
+    // this.store.pipe(select(state => state)).subscribe(dataResult => {
+    //   if(!this.dataSource){
+    //     this.dataSource = new MatTableDataSource(dataResult.dataSource);
+    //     this.configure();
+    //   }
+    //   else{
+    //     this.dataSource.data = dataResult.dataSource;
+    //     // const totalPages = this.dataSource.data.length / this.dataSource.paginator.pageSize;
+    //     // if(this.dataSource.paginator.hasPreviousPage() && this.dataSource.paginator.pageIndex >= totalPages){
+    //     //   this.dataSource.paginator.previousPage();
+    //     // }
+    //   }
     // });
-
 
    if(this.showActionToolbar)
     this.configureToolbar();
   }
 
   bind(obj: any){
-    this.store.dispatch(new AddItemAction(obj));
+    //this.store.dispatch(new AddItemAction(obj));
   }
 
   configure(){
     this.columns = this.dataTable.columns;
     this.displayedColumns = this.columns.map(c => c.columnDef);
 
-   // this.dataSource = new MatTableDataSource(this.dataTable.dataSource);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

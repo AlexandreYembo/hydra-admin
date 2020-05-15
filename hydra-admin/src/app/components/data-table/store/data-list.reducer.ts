@@ -24,7 +24,10 @@ export function DataSourceReducer(state: any[] = [{name: 'initial'}], action: Da
     switch (action.type) {
         case DataTableActionsType.ADD_ITEM:
             return [...state, action.payload];
+        case DataTableActionsType.REMOVE_ITEM:
+            return [...state, action.payload];
+
         default:
-            return state;
+            return state; 
       }
 }
