@@ -13,6 +13,7 @@ import { DataTableModule } from 'src/app/components/data-table/data-table.module
 import { CategoryModule } from '../category/category.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DataTableComponent } from 'src/app/components/data-table/data-table.component';
+import { CategoryService } from '../category.service';
 
 
 
@@ -33,7 +34,7 @@ import { DataTableComponent } from 'src/app/components/data-table/data-table.com
     DataTableModule,
     CategoryModule,
   ],
-  providers:[DataTableComponent],
+  providers:[DataTableComponent, CategoryService],
   exports: [CatalogEditComponent]
 })
 export class CatalogEditModule { }

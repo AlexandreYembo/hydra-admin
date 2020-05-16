@@ -1,5 +1,8 @@
+import { Observable } from 'rxjs';
+
 export class DataTable {
     public dataSource: any[];
+    public dataSourceObservable: Observable<any>;
     public columns: DataTableColumns[];
   }
 

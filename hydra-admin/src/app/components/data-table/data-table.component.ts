@@ -35,6 +35,17 @@ export class DataTableComponent implements OnInit {
 
 
   ngOnInit() {
+    this.dataTable.dataSourceObservable.subscribe(s => {
+      if(!this.dataSource){
+          this.dataSource = new MatTableDataSource(s);
+          this.configure();
+      }
+      else{
+        this.dataSource.data = s;
+      }
+    });
+   
+
     // this.store.pipe(select(state => state)).subscribe(dataResult => {
     //   if(!this.dataSource){
     //     this.dataSource = new MatTableDataSource(dataResult.dataSource);

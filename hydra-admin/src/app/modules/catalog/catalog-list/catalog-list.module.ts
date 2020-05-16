@@ -6,6 +6,7 @@ import { StoreModule, Store } from '@ngrx/store';
 import { CatalogListFacade } from '../catalog-store';
 import { SharedStore } from 'src/app/store/shared-store';
 import { CategoryListFacade } from '../category/category-store';
+import { CatalogService } from '../catalog.service';
 
 @NgModule({
   declarations: [CatalogListComponent],
@@ -18,7 +19,7 @@ import { CategoryListFacade } from '../category/category-store';
       //dataTable: DatalistReducer
     })
   ],
-  providers:[Store, SharedStore],
+  providers:[Store, SharedStore, CatalogService],
   exports:[
     CatalogListComponent
   ]

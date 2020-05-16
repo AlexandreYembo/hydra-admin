@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DataTableColumns, DataTable } from 'src/app/components/data-table/data-table-datasource';
 import { CategoryComponent } from '../category/category.component';
 import { MatDialog } from '@angular/material/dialog';
-import { CategoryService } from 'src/app/services/category.service';
+import { CategoryService } from 'src/app/modules/catalog/category.service';
 import { CategoryModel } from 'src/app/models/category.model';
 import { DataTableComponent } from 'src/app/components/data-table/data-table.component';
 

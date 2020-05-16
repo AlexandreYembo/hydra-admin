@@ -8,6 +8,7 @@ import { CatalogModel } from 'src/app/models/catalog-model';
 import { SharedAction, TypeAction } from 'src/app/store/shared-action';
 import { CategoryActionsType } from '../category/category-store';
 import { CatalogActionsType } from '../catalog-store';
+import { CatalogService } from '../catalog.service';
 
 export interface UserData {
   id: string;
@@ -32,22 +33,22 @@ const NAMES: string[] = [
   styleUrls: ['./catalog-list.component.scss'],
 })
 export class CatalogListComponent implements OnInit {
-  users: UserData[];
+  catalog: CatalogModel[];
   dataTable: DataTable = new DataTable();
 
   constructor(public dataTableComponent: DataTableComponent, 
     private storeCatalog: SharedStore<DataSourceState<CatalogModel>>,
-    private storeCategory: SharedStore<DataSourceState<CategoryModel>>) {
-    this.users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-    this.createColumns();
+    private storeCategory: SharedStore<DataSourceState<CategoryModel>>,
+    private catalogService: CatalogService) {
+    //this.users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+
   // setTimeout(() =>  dataTableComponent.bind({name: 'alex'}), 5000 );
 
     //this.dataTable.dataSource = this.users;
   }
   ngOnInit(): void {
-    this.storeCatalog.getStore((state: CatalogModel[] ) => state, (result: CatalogModel[]) => {
-      console.log(result);
-      });
+    this.dataTable.dataSourceObservable = this.catalogService.getCategories();//[];
+    this.createColumns();
   }
 
   editTest(element: any){
