@@ -29,7 +29,7 @@ export class CatalogEditComponent implements OnInit {
               public dialog: MatDialog, 
               public categoryService: CategoryService,
               @Inject(DataTableComponent) public dataTable: DataTableComponent) {
-    this.categoriesDatatable.dataSource = [];//Array.from({length: 2}, (_, k) => getCategories(k + 1));
+    //this.categoriesDatatable.dataSource = [];//Array.from({length: 2}, (_, k) => getCategories(k + 1));
     this.createColumns();
 
    // this.categoriesSelect = [Array.from({length: 2}, (_, k) => getCategories(k + 1))];
@@ -70,8 +70,8 @@ export class CatalogEditComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.categoriesDatatable.dataSource = Array.from({length: 2}, (_, k) => getCategories(k + 1))//this.categoryService.getList();
-      this.createColumns();
+      //this.categoriesDatatable.dataSource = new Array.from({length: 2}, (_, k) => getCategories(k + 1))//this.categoryService.getList();
+      //this.createColumns();
       this.categoriesSelect = this.categoryService.getList();
     });
   }

@@ -47,7 +47,7 @@ export class CatalogListComponent implements OnInit {
     //this.dataTable.dataSource = this.users;
   }
   ngOnInit(): void {
-    this.dataTable.dataSourceObservable = this.catalogService.getCategories();//[];
+    this.dataTable.dataSource = this.catalogService.getCategories();//[];
     this.createColumns();
   }
 
