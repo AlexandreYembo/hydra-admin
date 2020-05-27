@@ -9,6 +9,7 @@ import { SharedAction, TypeAction } from 'src/app/store/shared-action';
 import { CategoryActionsType } from '../category/category-store';
 import { CatalogActionsType } from '../catalog-store';
 import { CatalogService } from '../catalog.service';
+import { BasketService } from '../../basket/basket.service';
 
 export interface UserData {
   id: string;
@@ -49,6 +50,7 @@ export class CatalogListComponent implements OnInit {
   ngOnInit(): void {
     this.dataTable.dataSource = this.catalogService.getCategories();//[];
     this.createColumns();
+    console.log('checking price updated');
   }
 
   editTest(element: any){

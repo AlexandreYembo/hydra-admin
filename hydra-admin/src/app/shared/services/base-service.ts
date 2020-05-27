@@ -1,6 +1,7 @@
 import { apis } from '../../../environments/apis';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SignalRService } from './signalR.service';
 
     export class Parameter {
         public key: string;
@@ -8,6 +9,7 @@ import { Observable } from 'rxjs';
     }
 
 export abstract class BaseService {
+    signalRService: SignalRService;
     constructor(protected http: HttpClient, public service: string) { }
  
     get apiUrl(): string {
@@ -29,6 +31,12 @@ export abstract class BaseService {
     public delete(endpoint: string): Observable<any>{
         return this.http.delete(`${this.apiUrl}/${endpoint}`);
     }
+
+    public requestBySignalR(endpoint: string) {
+        this.signalRService = new SignalRService(`${this.apiUrl}/${endpoint}`)
+        // this.signalRService.listener(cmd);
+    }
+
 
     /**
      * Method to get the parameter

@@ -15,12 +15,11 @@ import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.componen
 import { CatalogListModule } from 'src/app/modules/catalog/catalog-list/catalog-list.module';
 import { CatalogEditModule } from './modules/catalog/catalog-edit/catalog-edit.module';
 import { HttpClientModule } from '@angular/common/http';
-// import { CategoryService } from './modules/catalog/category.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

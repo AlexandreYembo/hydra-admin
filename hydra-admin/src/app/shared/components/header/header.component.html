@@ -7,6 +7,14 @@
         <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
             <ul fxLayout="row" fxLayoutGap="20px">
                 <li>
+                    <button mat-button [matMenuTriggerFor]="menuBasket">
+                        <mat-icon>shopping_cart</mat-icon>
+                    </button>
+                    <mat-menu #menuBasket="matMenu">
+                       <app-basket-list></app-basket-list>
+                    </mat-menu>
+                </li>
+                <li>
                     <button mat-icon-button>
                         <mat-icon>settings</mat-icon>
                     </button>

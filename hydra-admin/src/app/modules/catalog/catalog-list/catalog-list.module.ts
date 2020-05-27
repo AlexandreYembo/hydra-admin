@@ -7,6 +7,7 @@ import { CatalogListFacade } from '../catalog-store';
 import { SharedStore } from 'src/app/store/shared-store';
 import { CategoryListFacade } from '../category/category-store';
 import { CatalogService } from '../catalog.service';
+import { BasketService } from '../../basket/basket.service';
 
 @NgModule({
   declarations: [CatalogListComponent],
@@ -19,7 +20,7 @@ import { CatalogService } from '../catalog.service';
       //dataTable: DatalistReducer
     })
   ],
-  providers:[Store, SharedStore, CatalogService],
+  providers:[Store, SharedStore, CatalogService, BasketService],
   exports:[
     CatalogListComponent
   ]
