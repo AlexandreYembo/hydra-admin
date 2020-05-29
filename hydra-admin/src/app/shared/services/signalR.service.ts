@@ -4,7 +4,7 @@ export class SignalRService {
     hubConnection: signalR.HubConnection;
     constructor(conn: string){ 
         this.hubConnection = new signalR.HubConnectionBuilder()
-                                .withUrl(conn)
+                                .withUrl(conn)//, {accessTokenFactory: () => '343f7ad5-51d2-43ff-9a76-6da73fd1fe7d'})
                                 .build();
         this.startSignalR();
                                 

@@ -12,6 +12,7 @@ import { MatListModule } from '@angular/material/list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { BasketListModule } from '../modules/basket/basket-list/basket-list.module';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { BasketListModule } from '../modules/basket/basket-list/basket-list.modu
     MatMenuModule,
     MatListModule,
     RouterModule,
-    BasketListModule
+    BasketListModule,
+    MatBadgeModule
   ],
   exports: [
     HeaderComponent,

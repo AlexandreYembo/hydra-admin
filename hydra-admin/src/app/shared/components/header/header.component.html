@@ -7,11 +7,11 @@
         <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
             <ul fxLayout="row" fxLayoutGap="20px">
                 <li>
-                    <button mat-button [matMenuTriggerFor]="menuBasket">
+                    <button mat-button [matMenuTriggerFor]="menuBasket" [matBadge]="totalQty" matBadgePosition="before" matBadgeColor="warn">
                         <mat-icon>shopping_cart</mat-icon>
                     </button>
                     <mat-menu #menuBasket="matMenu">
-                       <app-basket-list></app-basket-list>
+                       <app-basket-list (updateTotalBasket)="uppdateTotalBasket($event)"></app-basket-list>
                     </mat-menu>
                 </li>
                 <li>

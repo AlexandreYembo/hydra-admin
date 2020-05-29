@@ -1,0 +1,22 @@
+ul li {
+    list-style: none;
+}
+
+.empty-basket {
+    width: 100px;
+    height: 100px;
+}
+
+.example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+
+  mat-form-field {
+    margin-right: 12px;
+  }
