@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BasketModel } from 'src/app/models/basket-model';
 import { BasketService } from '../basket.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Guid } from 'guid-typescript';
 
 @Component({
   selector: 'app-basket-list',
@@ -9,25 +10,51 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./basket-list.component.scss']
 })
 export class BasketListComponent implements OnInit {
-  items: BasketModel;
-  isEmpty: boolean;
-  priceBasket: number
+  basket: BasketModel;
+  processing: boolean = false;
   @Output()updateTotalBasket = new EventEmitter<number>();
-  constructor(public basketService: BasketService, private _snackBar: MatSnackBar) { }
+  constructor(public basketService: BasketService, 
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.isEmpty = true;
+    this.basketService.getBasket((result) => {
 
-    this.basketService.checkBasketUpdated((result) => {
-      var basket = JSON.parse(result);
-      this.items = basket.Items;
-      this.isEmpty = this.items === null;
-      this.priceBasket = basket.Total;
-      this.updateTotalBasket.emit(basket.Qty);
+      if(result != null){
+        this.basket = result;
+        this.updateTotalBasket.emit(this.basket.totalQty);
+      }
+      else{
+        this.basket = null;
+        this.updateTotalBasket.emit(0);
+      }
+    });
+  }
+  
+  deleteBasket(){
+    this.processing = true;
+      this.basketService.deleteBasket((result) => {
+        this.processing = false;
+        this._snackBar.open('Basket deleted!', '', {
+          duration: 3000,
+        });
+        this.basket = result;
+      });
+  }
+  updateItem(event: Event, id: Guid){
+      let qty = +(<HTMLInputElement>event.target).value;
+      this.basket.items.filter(m => m.id == id).map(r => r.qty = qty);
+      
+  }
 
+  updateBasket(){
+    this.processing = true;
+    this.basketService.updateBasket(this.basket, (result => {
+      this.processing = false;
       this._snackBar.open('Basket updated!', '', {
         duration: 3000,
       });
-    });
+
+      this.basket = result;
+    }));
   }
 }

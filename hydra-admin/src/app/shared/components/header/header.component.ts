@@ -6,13 +6,12 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input()totalQty: number;
+  @Input()totalQty: number = 0;
   @Output() toggleSidebarEvent: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log('hi');
     console.log(this.totalQty);
   }
 
@@ -20,7 +19,13 @@ export class HeaderComponent implements OnInit {
     this.toggleSidebarEvent.emit();
   }
 
-  uppdateTotalBasket(total: number){
+  updateTotalBasket(total: number){
     this.totalQty = total;
   }
+
+  //Avoid close the menu
+  freezeItem($event:any){
+    $event.stopPropagation();
+    //Another instructions
+}
 }

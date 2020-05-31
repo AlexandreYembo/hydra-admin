@@ -1,8 +1,9 @@
 import { BasketItemModel } from './basket-item-model';
+import { Guid } from 'guid-typescript';
 
 export class BasketModel {
-    public id: number;
-    public productId: number;
-    public qty: number;
+    public UserId: Guid;
+    public totalQty: number;
+    public totalPrice: number
     public items: BasketItemModel[];
 }

@@ -4,6 +4,7 @@ export class BasketItemModel {
     public id: Guid
     public itemId: Guid
     public itemName: string;
-    public price: number;
+    public itemPrice: number;
+    public totalPrice: number;
     public qty: number;
 }

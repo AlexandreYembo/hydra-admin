@@ -1,4 +1,5 @@
 import * as signalR from "@aspnet/signalr";
+import { parse } from 'path';
 
 export class SignalRService {
     hubConnection: signalR.HubConnection;
@@ -18,7 +19,13 @@ export class SignalRService {
 
     public listener(cmd: string, callback: any){
         this.hubConnection.on(cmd, (data) => {
-            callback(data);
+            if(data == "null"){
+                data = null;
+                callback(data);
+            }
+            else{
+                callback(JSON.parse(data));
+            }
         });
     }
 }

@@ -8,7 +8,9 @@ import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -21,8 +23,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatCardModule,
     MatButtonModule,
     MatListModule,
+    MatInputModule,
     MatFormFieldModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
   ],
   providers:[BasketService],
   exports: [BasketListComponent]
