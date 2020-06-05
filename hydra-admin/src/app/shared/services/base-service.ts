@@ -1,7 +1,6 @@
 import { apis } from '../../../environments/apis';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SignalRService } from './signalR.service';
 
     export class Parameter {
         public key: string;
@@ -9,12 +8,19 @@ import { SignalRService } from './signalR.service';
     }
 
 export abstract class BaseService {
-    signalRService: SignalRService;
     constructor(protected http: HttpClient, public service: string) { }
  
     get apiUrl(): string {
         return apis[this.service]
-    } 
+    }
+    
+    get identityApiUrl(): string {
+        return apis.identity;
+    }
+
+    // public getToken(){
+    //     return this.http.get<any>(`${this.identityApiUrl}`)
+    // }
 
     public get<T>(endpoint: string, par?: Parameter[]): Observable<T> {
         return this.http.get<T>(`${this.apiUrl}/${endpoint}` );
@@ -30,11 +36,6 @@ export abstract class BaseService {
 
     public delete(endpoint: string): Observable<any>{
         return this.http.delete(`${this.apiUrl}/${endpoint}`);
-    }
-
-    public requestBySignalR(endpoint: string) {
-        this.signalRService = new SignalRService(`${this.apiUrl}/${endpoint}`)
-        // this.signalRService.listener(cmd);
     }
 
 

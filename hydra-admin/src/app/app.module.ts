@@ -15,11 +15,14 @@ import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.componen
 import { CatalogListModule } from 'src/app/modules/catalog/catalog-list/catalog-list.module';
 import { CatalogEditModule } from './modules/catalog/catalog-edit/catalog-edit.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
+import { AuthGuard } from './core/authentication/auth.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
+    AuthCallbackComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDividerModule,
     MatProgressSpinnerModule
   ],
+  providers:[ AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
