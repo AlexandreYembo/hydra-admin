@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SignalRService } from 'src/app/shared/services/signalR.service';
 
 
 
@@ -28,7 +29,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatSnackBarModule,
     MatProgressSpinnerModule,
   ],
-  providers:[BasketService],
+  providers:[SignalRService, BasketService],
   exports: [BasketListComponent]
 })
 export class BasketListModule { }

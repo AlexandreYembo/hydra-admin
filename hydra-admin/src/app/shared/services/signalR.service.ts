@@ -1,29 +1,34 @@
 import * as signalR from "@aspnet/signalr";
 import { HttpClient } from '@angular/common/http';
-//import { IdentityServerCli } from './identity-server-cli';
+import { Injectable } from '@angular/core';
 
+interface INegotiate{
+    accessToken: string;
+}
+
+@Injectable()
 export class SignalRService {
-    private http: HttpClient;
-   ;
     hubConnection: signalR.HubConnection;
-    constructor(conn: string, token: string){ 
-
-        let options = {
-            accessTokenFactory: () => token,
-        }
-
-        this.hubConnection = new signalR.HubConnectionBuilder()
-                                .withUrl(conn, options)
-                                .build();
-        this.startSignalR();
-                                
+    negotiate: INegotiate;
+    constructor(public http: HttpClient){
     }
 
-    private startSignalR(){
-        this.hubConnection.start()
+    public startSignalR(conn: string, token: string, fnCallback: any){
+      //  this.http.get<INegotiate>(`${conn}/api/negotiate`).subscribe(r => {
+            let options = {
+                accessTokenFactory: () => token//r.accessToken,
+            }
+
+            this.hubConnection = new signalR.HubConnectionBuilder()
+                                .withUrl(`${conn}/api`, options)
+                                .build();
+
+            this.hubConnection.start()
                           .then(()=> console.log('Connection started!'))
                           .catch(err => console.log('Error while starting connection: ' + err));
 
+            fnCallback();
+        //});
     }
 
     public listener(cmd: string, callback: any){

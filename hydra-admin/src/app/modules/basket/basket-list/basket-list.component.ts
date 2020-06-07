@@ -32,12 +32,11 @@ export class BasketListComponent implements OnInit {
   
   deleteBasket(){
     this.processing = true;
-      this.basketService.deleteBasket((result) => {
+      this.basketService.deleteBasket().subscribe(result => {
         this.processing = false;
         this._snackBar.open('Basket deleted!', '', {
           duration: 3000,
         });
-        this.basket = result;
       });
   }
   updateItem(event: Event, id: Guid){
@@ -48,13 +47,11 @@ export class BasketListComponent implements OnInit {
 
   updateBasket(){
     this.processing = true;
-    this.basketService.updateBasket(this.basket, (result => {
+    this.basketService.updateBasket(this.basket).subscribe(result => {
       this.processing = false;
       this._snackBar.open('Basket updated!', '', {
         duration: 3000,
       });
-
-      this.basket = result;
-    }));
+    });
   }
 }
