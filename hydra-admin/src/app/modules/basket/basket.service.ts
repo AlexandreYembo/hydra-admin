@@ -9,7 +9,6 @@ import { User } from 'oidc-client';
 
 @Injectable()
 export class BasketService extends BaseService{
-    user: User;
     constructor(public http: HttpClient, public authService: AuthService, public signalRService: SignalRService){
         super(http, 'basket');
     }
@@ -18,7 +17,7 @@ export class BasketService extends BaseService{
             this.user = user;
             this.signalRService.startSignalR(this.apiUrl, user.access_token, () => { //user.access_token, () => {
                 this.signalRService.listener('basket', callback);
-                this.get<BasketModel>(`api/GetBasket?UserId=${this.user.profile.sub}`).subscribe(result => {
+                this.get<BasketModel>('api/GetBasket').subscribe(result => {
                     callback(result);
                 });
             });
@@ -26,11 +25,11 @@ export class BasketService extends BaseService{
     }
 
     updateBasket(basket: BasketModel) {
-        return this.put(`api/UpdateBasket/${this.user.profile.sub}`, basket)
+        return this.put('api/UpdateBasket', basket)
     }
 
 
     deleteBasket(){
-        return this.delete(`api/DeleteBasket?UserId=${this.user.profile.sub}`);
+        return this.delete('api/DeleteBasket');
     }
 }

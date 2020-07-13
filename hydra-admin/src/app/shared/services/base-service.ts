@@ -1,6 +1,7 @@
 import { apis } from '../../../environments/apis';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { User } from 'oidc-client';
 
     export class Parameter {
         public key: string;
@@ -8,6 +9,7 @@ import { Observable } from 'rxjs';
     }
 
 export abstract class BaseService {
+    user: User;
     constructor(protected http: HttpClient, public service: string) { }
  
     get apiUrl(): string {
@@ -18,26 +20,30 @@ export abstract class BaseService {
         return apis.identity;
     }
 
-    // public getToken(){
-    //     return this.http.get<any>(`${this.identityApiUrl}`)
-    // }
-
     public get<T>(endpoint: string, par?: Parameter[]): Observable<T> {
-        return this.http.get<T>(`${this.apiUrl}/${endpoint}` );
+        return this.http.get<T>(`${this.apiUrl}/${endpoint}`, this.getOptions());
     }
 
     public post<T>(endpoint: string, obj: T): Observable<any> {
-        return this.http.post(`${this.apiUrl}/${endpoint}`, obj);
+        return this.http.post(`${this.apiUrl}/${endpoint}`, obj, this.getOptions());
     }
 
-    public put<T>(endpoint: string, obj: T): Observable<any>{
-        return this.http.put(`${this.apiUrl}/${endpoint}`, obj);
+    public put<T>(endpoint: string, obj: T): Observable<any> {
+        return this.http.put(`${this.apiUrl}/${endpoint}`, obj, this.getOptions());
     }
 
     public delete(endpoint: string): Observable<any>{
-        return this.http.delete(`${this.apiUrl}/${endpoint}`);
+        return this.http.delete(`${this.apiUrl}/${endpoint}`, this.getOptions());
     }
 
+    private getOptions(){
+        return {
+            headers: new HttpHeaders({
+              'Content-Type':  'application/json',
+              'Authorization': `${this.user.token_type} ${this.user.access_token}`
+            })
+        };
+    }
 
     /**
      * Method to get the parameter

@@ -16,7 +16,6 @@ export class AuthService extends BaseService  {
   authNavStatus$ = this._authNavStatusSource.asObservable();
 
   private manager = new UserManager(getClientSettings());
-  private user: User | null;
 
   constructor(public http: HttpClient) { 
     super(http, 'identity');     
@@ -61,6 +60,8 @@ export class AuthService extends BaseService  {
   }
 }
 
+
+// TODO: Implement a resource to get the configuration from a identityserver (Create a new route to get the configuration in Identity Server)
 export function getClientSettings(): UserManagerSettings {
   return {
       authority: 'http://localhost:5000',

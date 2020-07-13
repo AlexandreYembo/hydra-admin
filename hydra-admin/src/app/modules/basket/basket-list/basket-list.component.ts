@@ -12,7 +12,9 @@ import { Guid } from 'guid-typescript';
 export class BasketListComponent implements OnInit {
   basket: BasketModel;
   processing: boolean = false;
+  
   @Output()updateTotalBasket = new EventEmitter<number>();
+  
   constructor(public basketService: BasketService, 
     private _snackBar: MatSnackBar) { }
 
