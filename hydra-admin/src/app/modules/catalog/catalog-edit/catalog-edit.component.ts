@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CategoryService } from 'src/app/modules/catalog/category.service';
 import { CategoryModel } from 'src/app/models/category.model';
 import { DataTableComponent } from 'src/app/components/data-table/data-table.component';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 const CATEGORIES: string[] = [
   'Eletronics', 'TV', 'Computer', 'jewelry'
@@ -22,7 +23,30 @@ export class CatalogEditComponent implements OnInit {
   toolbarParameter: ActionsToolbarConfig;
   categoriesDatatable: DataTable = new DataTable();
   categoriesSelect: CategoryModel[] = [];
-  
+  productForm: FormGroup;
+
+
+  // {
+  //   "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  //   "categoryId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  //   "name": "string",
+  //   "description": "string",
+  //   "active": true,
+  //   "price": 0,
+  //   "createdDate": "2020-11-15T13:59:12.609Z",
+  //   "image": "string",
+  //   "qty": 0,
+  //   "height": 0,
+  //   "width": 0,
+  //   "length": 0,
+  //   "category": {
+  //     "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  //     "name": "string",
+  //     "code": 0
+  //   }
+  // }
+
+
   
   constructor(private router: Router, 
               private activatedRoute: ActivatedRoute, 
@@ -37,6 +61,7 @@ export class CatalogEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.configureToolbar();
+    this.configureForm();
   }
 
   configureToolbar(){
@@ -46,6 +71,24 @@ export class CatalogEditComponent implements OnInit {
     this.toolbarParameter.saveButton.isVisible = true;
     this.toolbarParameter.newButton.isVisible = true;
     this.toolbarParameter.deleteButton.isVisible = true;
+  }
+
+  configureForm(){
+    this.productForm = new FormGroup(
+      {
+        'name': new FormControl(null, Validators.required),
+        'description': new FormControl(),
+        'qty': new FormControl(null, [Validators.required, Validators.min(1), Validators.max(15)]),
+        'price': new FormControl(null, [Validators.required, Validators.min(1)]),
+        'active': new FormControl(true),
+        'image': new FormControl(),
+        'dimensions': new FormGroup({
+          'height': new FormControl(),
+          'width': new FormControl(),
+          'length': new FormControl()
+        })
+      }
+    );
   }
 
   createColumns(){
@@ -79,6 +122,14 @@ export class CatalogEditComponent implements OnInit {
   onBack(){
     this.router.navigate(['/catalog'], { queryParamsHandling: 'preserve'})
 
+  }
+
+  onSubmit(){
+
+  }
+
+  public checkError = (controlName: string, errorName: string) => {
+    return this.productForm.controls[controlName].hasError(errorName);
   }
 }
 function getCategories(id: number): CategoryModel{

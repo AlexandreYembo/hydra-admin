@@ -24,7 +24,7 @@
                     </button>
                     <mat-menu #menu="matMenu" color="primary">
                       <div *ngFor="let item of parameter.menu.items">
-                        <button mat-menu-item *ngIf="item.isVisible == true">
+                        <button type="item.type" mat-menu-item *ngIf="item.isVisible == true">
                             <mat-icon> {{item.icon}}</mat-icon>
                             {{item.name}}
                       </button>

@@ -14,9 +14,8 @@ import { CategoryModule } from '../category/category.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DataTableComponent } from 'src/app/components/data-table/data-table.component';
 import { CategoryService } from '../category.service';
-
-
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [CatalogEditComponent],
@@ -33,6 +32,9 @@ import { CategoryService } from '../category.service';
     MatDialogModule,
     DataTableModule,
     CategoryModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatCheckboxModule
   ],
   providers:[DataTableComponent, CategoryService],
   exports: [CatalogEditComponent]

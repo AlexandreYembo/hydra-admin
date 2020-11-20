@@ -5,10 +5,6 @@ import {MatTableDataSource} from '@angular/material/table';
 import { DataTable, DataTableColumns } from './data-table-datasource';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActionsToolbarConfig, ActionsToolbarButtons } from '../actions-toolbar/actions-toolbar-config';
-import { DataSourceState } from './store/models/data-source-state';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { AddItemAction } from './store/data-list.action';
 
 @Component({
   selector: 'app-data-table',
@@ -83,9 +79,9 @@ export class DataTableComponent implements OnInit {
 
     //begin create menu
     this.toolbarParameter.menu.menuButton.isVisible = true;
-    this.toolbarParameter.addItemToMenu(new ActionsToolbarButtons('Print', true, null, null, 'print'));
-    this.toolbarParameter.addItemToMenu(new ActionsToolbarButtons('Archive', true, null, null, 'archive'));
-    this.toolbarParameter.addItemToMenu(new ActionsToolbarButtons('Export',  true, null, null, 'import_export'));
+    this.toolbarParameter.addItemToMenu(new ActionsToolbarButtons('Print', 'button', true, null, null, 'print'));
+    this.toolbarParameter.addItemToMenu(new ActionsToolbarButtons('Archive', 'button', true, null, null, 'archive'));
+    this.toolbarParameter.addItemToMenu(new ActionsToolbarButtons('Export',  'button', true, null, null, 'import_export'));
     //end create menu
   }
 
