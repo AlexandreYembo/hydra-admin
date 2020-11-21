@@ -18,8 +18,8 @@ export abstract class BaseService {
         return this.http.get<T>(`${this.apiUrl}/${endpoint}` );
     }
 
-    public post<T>(endpoint: string, obj: T): Observable<any> {
-        return this.http.post(`${this.apiUrl}/${endpoint}`, obj);
+    public post<T>(endpoint: string, body: any): Observable<T> {
+        return this.http.post<T>(`${this.apiUrl}/${endpoint}`, body);
     }
 
     public put<T>(endpoint: string, obj: T): Observable<any>{

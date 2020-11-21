@@ -1,17 +1,17 @@
 export interface AuthResponse {
-    RefreshToken: string,
-    AccessToken: string,
-    ExpiresIn: number,
-    UserToken: UserToken
+    refreshToken: string,
+    accessToken: string,
+    expiresIn: number,
+    userToken: UserToken
 }
 
 export interface UserToken {
-    Id: string,
-    Email: string,
-    Claims: Claims[]
+    id: string,
+    email: string,
+    claims: Claims[]
 }
 
 export interface Claims {
-    Value: string,
-    Type: string
+    value: string,
+    type: string
 }

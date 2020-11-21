@@ -1,7 +1,6 @@
-<!-- <router-outlet></router-outlet> -->
-<app-header (toggleSidebarEvent)="siderbarToggler()"></app-header>
+<app-header *ngIf="isLogged" (toggleSidebarEvent)="siderbarToggler()" [email]="email"></app-header>
 
-<mat-drawer-container>
+<mat-drawer-container *ngIf="isLogged">
     <mat-drawer mode="side" [opened]="siderBarOpen">
         <app-sidebar></app-sidebar>
     </mat-drawer>
@@ -9,5 +8,8 @@
         <router-outlet></router-outlet>
     </mat-drawer-content>
 </mat-drawer-container>
+<app-footer *ngIf="isLogged"></app-footer>
 
-<app-footer></app-footer>
+<div *ngIf="!isLogged">
+    <app-auth></app-auth>
+</div>
