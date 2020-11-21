@@ -5,10 +5,6 @@ import {MatTableDataSource} from '@angular/material/table';
 import { DataTable, DataTableColumns } from './data-table-datasource';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActionsToolbarConfig, ActionsToolbarButtons } from '../actions-toolbar/actions-toolbar-config';
-import { DataSourceState } from './store/models/data-source-state';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { AddItemAction } from './store/data-list.action';
 
 @Component({
   selector: 'app-data-table',
