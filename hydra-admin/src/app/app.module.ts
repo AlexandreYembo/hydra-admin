@@ -1,6 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +18,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 
 import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.component';
+import { AuthComponent } from 'src/app/auth/auth.component';
+
+
 import { CatalogListModule } from 'src/app/modules/catalog/catalog-list/catalog-list.module';
 import { CatalogEditModule } from './modules/catalog/catalog-edit/catalog-edit.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,11 +29,12 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -33,7 +43,13 @@ import { HttpClientModule } from '@angular/common/http';
     CatalogListModule,
     CatalogEditModule,
     MatSidenavModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCardModule,
+    MatTabsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSnackBarModule
   ],
   bootstrap: [AppComponent]
 })

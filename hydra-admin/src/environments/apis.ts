@@ -1,5 +1,5 @@
 export const apis = {
-    identity: 'http://localhost:5000',
+    identity: 'https://localhost:5001/api/identity',
     catalog:  'http://localhost:5001'
 };
 
