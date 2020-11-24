@@ -9,9 +9,8 @@ export class HeaderComponent {
   @Output() toggleSidebarEvent: EventEmitter<any> = new EventEmitter();
   @Input() email: string;
 
-  constructor() { 
-    debugger;
-  }
+  constructor() { }
+  
   toggleSidebar(){
     this.toggleSidebarEvent.emit();
   }

@@ -2,13 +2,14 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { BaseService } from '../shared/services/base-service';
 import { catchError, tap } from 'rxjs/operators'
-import { Subject, throwError } from 'rxjs';
+import { BehaviorSubject, throwError } from 'rxjs';
 import { AuthResponse } from './auth.reponse';
 import { User } from './user.model';
 
 @Injectable({providedIn: 'root'})
 export class AuthService extends BaseService {
-    user = new Subject<User>();
+    user = new BehaviorSubject<User>(null);
+    
     constructor(public http: HttpClient){
         super(http, 'identity');
     }

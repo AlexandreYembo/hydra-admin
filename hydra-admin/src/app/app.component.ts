@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userSub = this.authService.user.subscribe(user =>{
       this.isLogged = !!user;
-debugger;
+
       if(this.isLogged){
         this.email = user.email;
       }

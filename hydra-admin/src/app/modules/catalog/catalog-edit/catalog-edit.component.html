@@ -4,29 +4,6 @@
     <mat-label>Name</mat-label>
     <input matInput placeholder="Ex. Eletronic">
   </mat-form-field>
-
-  <!-- <app-category></app-category> -->
-  <mat-form-field>
-    <mat-label>Select</mat-label>
-    <!-- <mat-select>
-      <mat-option value="option">TV</mat-option>
-      <mat-option value="option">Computer</mat-option>
-    </mat-select> -->
-    <mat-select placeholder="Category" multiple="true" >
-      <mat-option 
-        *ngFor="let item of categoriesSelect" 
-        [value]="item.id"> 
-        <!-- (click)="refine($event, item)"> -->
-        {{ item.name }}
-      </mat-option>
-    </mat-select>
-
-  </mat-form-field>
-  <button mat-mini-fab color="primary" (click)="openDialog()"><mat-icon>add</mat-icon></button>
-  <!-- <mat-form-field class="example-full-width">
-    <mat-label>Leave a comment</mat-label>
-    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-  </mat-form-field> -->
 <mat-divider></mat-divider>
 <app-data-table [dataTable]="categoriesDatatable" [title]="'Categories'"></app-data-table>
 

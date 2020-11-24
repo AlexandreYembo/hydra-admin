@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataTable, DataTableColumns } from 'src/app/components/data-table/data-table-datasource';
 import { DataTableComponent } from 'src/app/components/data-table/data-table.component';
-import { DataSourceState } from 'src/app/components/data-table/store/models/data-source-state';
-import { SharedStore } from 'src/app/store/shared-store';
-import { CategoryModel } from 'src/app/models/category.model';
 import { CatalogModel } from 'src/app/models/catalog-model';
-import { SharedAction, TypeAction } from 'src/app/store/shared-action';
-import { CategoryActionsType } from '../category/category-store';
-import { CatalogActionsType } from '../catalog-store';
 import { CatalogService } from '../catalog.service';
 
 export interface UserData {
@@ -37,17 +31,10 @@ export class CatalogListComponent implements OnInit {
   dataTable: DataTable = new DataTable();
 
   constructor(public dataTableComponent: DataTableComponent, 
-    private storeCatalog: SharedStore<DataSourceState<CatalogModel>>,
-    private storeCategory: SharedStore<DataSourceState<CategoryModel>>,
     private catalogService: CatalogService) {
-    //this.users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-  // setTimeout(() =>  dataTableComponent.bind({name: 'alex'}), 5000 );
-
-    //this.dataTable.dataSource = this.users;
   }
   ngOnInit(): void {
-    this.dataTable.dataSource = this.catalogService.getCategories();//[];
+    this.dataTable.dataSource = this.catalogService.getProducts();
     this.createColumns();
   }
 
@@ -55,28 +42,11 @@ export class CatalogListComponent implements OnInit {
     alert('hi ' + element.name);
   }
 
-  addTest(){
-    let categoryObj: CategoryModel = new CategoryModel();
-    categoryObj
-    categoryObj.id = 1;
-    categoryObj.name = "Category";
-   
-    let catalogObj: CatalogModel = new CatalogModel();
-    catalogObj
-    catalogObj.id = 1;
-    catalogObj.name = "Catalog";
-    catalogObj.categories = [categoryObj];
-
-    this.storeCategory.dispatch(new SharedAction<CategoryModel>(CategoryActionsType.ADD_ITEM, TypeAction.add, categoryObj));
-    this.storeCatalog.dispatch(new SharedAction<CatalogModel>(CatalogActionsType.ADD_ITEM, TypeAction.add, catalogObj));
-  }
-
   createColumns(): void{
     this.dataTable.columns = [ 
-      new DataTableColumns('id', 'No', 'width: 10%'), 
       new DataTableColumns('name', 'Name', 'width: 40%'), 
-      new DataTableColumns('progress', 'My Progress', 'width: 10%'),
-      new DataTableColumns('color', 'My Color', 'width: 10%'), 
+      new DataTableColumns('qty', 'Qty', 'width: 10%'),
+      new DataTableColumns('price', 'Price', 'width: 10%'), 
      
       { columnDef: 'action', header: 'Actions', style: 'width: 80px;',
         actions: {

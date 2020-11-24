@@ -26,8 +26,6 @@ import { CatalogListModule } from 'src/app/modules/catalog/catalog-list/catalog-
 import { CatalogEditModule } from './modules/catalog/catalog-edit/catalog-edit.module';
 import { HttpClientModule } from '@angular/common/http';
 
-// import { CategoryService } from './modules/catalog/category.service';
-
 @NgModule({
   declarations: [
     AppComponent,

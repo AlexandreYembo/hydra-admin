@@ -5,7 +5,7 @@ import { CatalogListComponent } from './catalog-list.component';
 import { StoreModule, Store } from '@ngrx/store';
 import { CatalogListFacade } from '../catalog-store';
 import { SharedStore } from 'src/app/store/shared-store';
-import { CategoryListFacade } from '../category/category-store';
+// import { CategoryListFacade } from '../category/category-store';
 import { CatalogService } from '../catalog.service';
 
 @NgModule({
@@ -15,7 +15,7 @@ import { CatalogService } from '../catalog.service';
     DataTableModule,
     StoreModule.forRoot({
       catalogy: CatalogListFacade,
-      category: CategoryListFacade
+      // category: CategoryListFacade
       //dataTable: DatalistReducer
     })
   ],

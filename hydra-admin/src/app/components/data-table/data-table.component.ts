@@ -98,5 +98,3 @@ export class DataTableComponent implements OnInit {
     }
   }
 }
-
-//const selectTable = (state: any[]) => state;

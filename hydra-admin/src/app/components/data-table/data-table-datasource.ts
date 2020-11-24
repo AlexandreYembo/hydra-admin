@@ -2,7 +2,6 @@ import { Observable } from 'rxjs';
 
 export class DataTable {
     public dataSource: Observable<any>;
-  //  public dataSourceObservable: Observable<any>;
     public columns: DataTableColumns[];
   }
 
