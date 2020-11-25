@@ -17,7 +17,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.authService.autoLogin();
     this.userSub = this.authService.user.subscribe(user =>{
       this.isLogged = !!user;
 
@@ -30,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.userSub.unsubscribe();
   }
-
+ 
   siderbarToggler(){
     this.siderBarOpen = !this.siderBarOpen;
   }

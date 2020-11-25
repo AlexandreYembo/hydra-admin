@@ -36,7 +36,7 @@ export class AuthComponent implements OnInit {
         this.getResponse();
     }
 
-    onLRegister(){
+    onRegister(){
         if(!this.registerForm.valid) return;
         this.isLoading = true;
         const email = this.registerForm.value.username;

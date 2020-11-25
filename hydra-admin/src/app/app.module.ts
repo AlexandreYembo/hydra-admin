@@ -26,6 +26,7 @@ import { CatalogListModule } from 'src/app/modules/catalog/catalog-list/catalog-
 import { CatalogEditModule } from './modules/catalog/catalog-edit/catalog-edit.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptorService } from './auth/auth-http-interceptor.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { AuthHttpInterceptorService } from './auth/auth-http-interceptor.service
     MatSnackBarModule,
     MatProgressSpinnerModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptorService, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptorService, multi: true},
+    CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

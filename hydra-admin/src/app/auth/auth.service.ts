@@ -6,13 +6,17 @@ import { BehaviorSubject, throwError } from 'rxjs';
 import { AuthResponse } from './auth.reponse';
 import { User } from './user.model';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 
 @Injectable({providedIn: 'root'})
 export class AuthService extends BaseService {
     user = new BehaviorSubject<User>(null);
+    private expirationTimer: any;
     
     constructor(public http: HttpClient,
-        private route: Router){
+        private route: Router,
+        private cookieService: CookieService){
         super(http, 'identity');
     }
     login(email: string, password: string){
@@ -20,6 +24,40 @@ export class AuthService extends BaseService {
             email: email,
             password: password
         }).pipe(catchError(this.handleError), tap(this.handleAuthentication.bind(this)));
+    }
+
+    //get the user from the cookie
+    autoLogin() {
+        var userCookie = this.cookieService.get('userData');
+
+        if(!userCookie) return;
+        
+        const userData : {
+            email: string;
+            id: string;
+            _token: string;
+            _tokenExpirationDate: string;
+            
+        } = JSON.parse(userCookie);
+
+        if(!userData)return;
+
+        const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate))
+
+        if(loadedUser.token){
+            this.user.next(loadedUser);
+
+            const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
+           this.autoLogout(expirationDuration);
+        }
+    }
+
+    //invalidate the token if the token expires
+    autoLogout(expirationDuration: number){
+        debugger;
+        this.expirationTimer = setTimeout(() => {
+            this.logout();
+        }, expirationDuration)
     }
  
     register(email: string, password: string){
@@ -31,7 +69,14 @@ export class AuthService extends BaseService {
 
     logout(){
         this.user.next(null);
-        this.route.navigate(['/login'])
+        this.route.navigate(['/']);
+        this.cookieService.delete('userData');
+
+        if(this.expirationTimer){
+            clearTimeout(this.expirationTimer);
+        }
+
+        this.expirationTimer = null;
     }
     
     private handleAuthentication(resData: AuthResponse){
@@ -41,7 +86,13 @@ export class AuthService extends BaseService {
                               resData.accessToken, 
                               expirationDate);
 
+
+        //this.autoLogout(resData.expiresIn * 1000);
+        this.cookieService.set('userData', JSON.stringify(user)); //set the user in the cookie
+
+        this.autoLogin();
         this.user.next(user); // emit to the subject
+
     }
 
     private handleError(errorRes: HttpErrorResponse){
