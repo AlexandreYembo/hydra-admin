@@ -10,7 +10,7 @@
             <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
               <mat-form-field class="example-full-width">
                 <mat-label>Email</mat-label>
-                <input type="username" matInput placeholder="Email" value="" formControlName="username">
+                <input type="username" matInput placeholder="Email" value="" formControlName="email">
                 <mat-icon matSuffix>email</mat-icon>
               </mat-form-field>
     
@@ -23,23 +23,34 @@
             </form>
           </mat-tab>
           <mat-tab label="Register">
-            <mat-form-field class="example-full-width">
-              <mat-label>Email</mat-label>
-              <input type="email" matInput placeholder="Email" value="" >
-              <mat-icon matSuffix>email</mat-icon>
-            </mat-form-field>
-  
-            <mat-form-field class="example-full-width">
-              <mat-label>Password</mat-label>
-              <input type="password" matInput placeholder="Password" >
-              <mat-icon matSuffix>vpn_key</mat-icon>
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <mat-label>Password</mat-label>
-              <input type="password" matInput placeholder="Password" >
-              <mat-icon matSuffix>vpn_key</mat-icon>
-            </mat-form-field>
-            <button mat-button color="primary" >Register</button>
+            <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+              <mat-form-field class="example-full-width">
+                <mat-label>Full Name</mat-label>
+                <input type="text" matInput placeholder="Full Name" formControlName="name">
+                <mat-icon matSuffix>person</mat-icon>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Identity Number</mat-label>
+                <input type="text" matInput placeholder="Identity Number" formControlName="identityNumber">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput placeholder="Email" value="" formControlName="email">
+                <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
+    
+              <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput placeholder="Password" formControlName="password">
+                <mat-icon matSuffix>vpn_key</mat-icon>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Password Confirmation</mat-label>
+                <input type="password" matInput placeholder="Password Confirmation" formControlName="passwordConfirmation">
+                <mat-icon matSuffix>vpn_key</mat-icon>
+              </mat-form-field>
+              <button mat-button color="primary" >Register</button>
+            </form>
           </mat-tab>
         </mat-tab-group>
   

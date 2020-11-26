@@ -54,17 +54,23 @@ export class AuthService extends BaseService {
 
     //invalidate the token if the token expires
     autoLogout(expirationDuration: number){
-        debugger;
         this.expirationTimer = setTimeout(() => {
             this.logout();
         }, expirationDuration)
     }
  
-    register(email: string, password: string){
-        return this.post<AuthResponse>("login", {
-            email: email,
-            password: password
-        }).pipe(catchError(this.handleError), tap(this.handleAuthentication));
+    register(email: string, 
+            password: string, 
+            passwordConfirmation: string, 
+            identityNumber: string, 
+            name: string){
+        return this.post<AuthResponse>("createUser", {
+            email,
+            password,
+            passwordConfirmation,
+            identityNumber,
+            name
+        }).pipe(catchError(this.handleError), tap(this.handleAuthentication.bind(this)));
     }
 
     logout(){

@@ -27,35 +27,64 @@ export class AuthComponent implements OnInit {
     authObservable: Observable<AuthResponse>;
 
     onLogin(){
-        if(!this.loginForm.valid) return;
+        if(!this.loginFormValidation()) return;
 
         this.isLoading = true;
-        const email = this.loginForm.value.username;
+        const email = this.loginForm.value.email;
         const password = this.loginForm.value.password;
         this.authObservable = this.authService.login(email, password);
         this.getResponse();
     }
 
+    loginFormValidation() : boolean{
+        if(this.loginForm.valid) return true;
+        
+        var msg = new Array();
+
+        if(this.getFormError(this.loginForm, 'email', 'required'))
+            msg.push("Email is required!")
+
+        if(this.getFormError(this.loginForm, 'password', 'required'))
+            msg.push("Password is required!")
+
+        this.snackBar.open(msg.join('\n'),'', 
+            {
+                duration: 8000,
+                // panelClass: 'success-snackbar'
+            });
+
+        return false;
+    }
+
+    
+
     onRegister(){
         if(!this.registerForm.valid) return;
+
         this.isLoading = true;
-        const email = this.registerForm.value.username;
+        const email = this.registerForm.value.email;
         const password = this.registerForm.value.password;
-        this.authObservable = this.authService.register(email, password);
+        const passwordConfirmation = this.registerForm.value.passwordConfirmation;
+        const name = this.registerForm.value.name;
+        const identityNumber = this.registerForm.value.identityNumber;
+        this.authObservable = this.authService.register(email, password, passwordConfirmation, identityNumber, name);
         this.getResponse();
     }
 
     createLoginForm(){
         this.loginForm = new FormGroup({
-            'username': new FormControl(null, [Validators.required, Validators.email]),
+            'email': new FormControl(null, [Validators.required, Validators.email]),
             'password': new FormControl(null, Validators.required)
         })
     }
 
     createRegisterForm(){
         this.registerForm = new FormGroup({
-            'username': new FormControl(null, [Validators.required, Validators.email]),
-            'password': new FormControl(null, Validators.required)
+            'email': new FormControl(null, [Validators.required, Validators.email]),
+            'password': new FormControl(null, Validators.required),
+            'passwordConfirmation': new FormControl(null, Validators.required),
+            'name': new FormControl(null, Validators.required),
+            'identityNumber': new FormControl(null, Validators.required)
         })
     }
 
@@ -69,5 +98,9 @@ export class AuthComponent implements OnInit {
                 this.isLoading = false;
                 this.snackBar.open(error,'',{duration:8000});
             });
+    }
+
+    getFormError(form, control, type) {
+        return form.get(control).errors[type];
     }
 }
