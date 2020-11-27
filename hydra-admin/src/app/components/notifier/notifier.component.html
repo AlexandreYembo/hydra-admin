@@ -1,0 +1,9 @@
+<div>
+    {{data.type}}
+</div>
+<div class="content-style">
+    <div [innerHtml]="messages"></div>
+</div>
+<div style="text-align: center;">
+    <button mat-raised-button color="primary" (click)="snackBarRef.dismiss()">{{data.buttonText}}</button>
+</div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from'@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { NotifierService } from '../components/notifier/notifier.service';
 import { AuthResponse } from './auth.reponse';
 import { AuthService } from './auth.service';
 
@@ -14,8 +14,8 @@ import { AuthService } from './auth.service';
 
 export class AuthComponent implements OnInit {
     constructor(private authService: AuthService, 
-                private snackBar: MatSnackBar, 
-                private router: Router){ }
+                private router: Router,
+                private notifier: NotifierService){ }
 
     ngOnInit() {
        this.createLoginForm();
@@ -36,30 +36,8 @@ export class AuthComponent implements OnInit {
         this.getResponse();
     }
 
-    loginFormValidation() : boolean{
-        if(this.loginForm.valid) return true;
-        
-        var msg = new Array();
-
-        if(this.getFormError(this.loginForm, 'email', 'required'))
-            msg.push("Email is required!")
-
-        if(this.getFormError(this.loginForm, 'password', 'required'))
-            msg.push("Password is required!")
-
-        this.snackBar.open(msg.join('\n'),'', 
-            {
-                duration: 8000,
-                // panelClass: 'success-snackbar'
-            });
-
-        return false;
-    }
-
-    
-
     onRegister(){
-        if(!this.registerForm.valid) return;
+        if(!this.registerFormValidation()) return;
 
         this.isLoading = true;
         const email = this.registerForm.value.email;
@@ -69,6 +47,45 @@ export class AuthComponent implements OnInit {
         const identityNumber = this.registerForm.value.identityNumber;
         this.authObservable = this.authService.register(email, password, passwordConfirmation, identityNumber, name);
         this.getResponse();
+    }
+
+    loginFormValidation() : boolean {
+        if(this.loginForm.valid) return true;
+        
+        var msg = new Array();
+
+        if(this.getFormError(this.loginForm, 'email', 'required'))
+            msg.push("Email is required!")
+
+        if(this.getFormError(this.loginForm, 'password', 'required'))
+            msg.push("Password is required!")
+        
+        this.notifier.notify(msg, 'Ok', 'Error');
+        return false;
+    }
+
+    registerFormValidation(): boolean {
+        if(this.registerForm.valid) return true;
+        
+        var msg = new Array();
+
+        if(this.getFormError(this.registerForm, 'email', 'required'))
+            msg.push("Email is required!")
+
+        if(this.getFormError(this.registerForm, 'password', 'required'))
+            msg.push("Password is required!")
+
+        if(this.getFormError(this.registerForm, 'passwordConfirmation', 'required'))
+            msg.push("Email is required!")
+
+        if(this.getFormError(this.registerForm, 'name', 'required'))
+            msg.push("Password is required!")
+
+        if(this.getFormError(this.registerForm, 'identityNumber', 'required'))
+            msg.push("Email is required!")
+        
+        this.notifier.notify(msg, 'Ok', 'Error');
+        return false;
     }
 
     createLoginForm(){
@@ -96,11 +113,11 @@ export class AuthComponent implements OnInit {
             },
             error => {
                 this.isLoading = false;
-                this.snackBar.open(error,'',{duration:8000});
+                this.notifier.notify(error, 'Ok', 'Error');
             });
     }
 
     getFormError(form, control, type) {
-        return form.get(control).errors[type];
+        return form.get(control).errors && form.get(control).errors[type];
     }
 }
