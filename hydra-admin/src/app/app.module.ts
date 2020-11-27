@@ -27,12 +27,14 @@ import { CatalogEditModule } from './modules/catalog/catalog-edit/catalog-edit.m
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptorService } from './auth/auth-http-interceptor.service';
 import { CookieService } from 'ngx-cookie-service';
+import { PlaceHolderDirective } from './shared/components/placeholder/placeholder.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    AuthComponent
+    AuthComponent,
+    PlaceHolderDirective
   ],
   imports: [
     BrowserModule,
@@ -57,5 +59,7 @@ import { CookieService } from 'ngx-cookie-service';
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptorService, multi: true},
     CookieService],
   bootstrap: [AppComponent]
+  //For angular 9 or higher you can ommit entryComponents.
+  //, entryComponents:[DataTableComponent]. In case you are using the version 8 or old one of Angular You might register the component on this place to resolve itself.
 })
 export class AppModule { }
