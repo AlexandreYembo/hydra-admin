@@ -2,7 +2,7 @@ import { Component, OnInit } from'@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { NotifierService } from '../components/notifier/notifier.service';
+import { NotifierService } from '../shared/components/notifier/notifier.service';
 import { AuthResponse } from './auth.reponse';
 import { AuthService } from './auth.service';
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataTable, DataTableColumns } from 'src/app/components/data-table/data-table-datasource';
-import { DataTableComponent } from 'src/app/components/data-table/data-table.component';
 import { CatalogModel } from 'src/app/models/catalog-model';
+import { DataTable, DataTableColumns } from 'src/app/shared/components/data-table/data-table-datasource';
+import { DataTableComponent } from 'src/app/shared/components/data-table/data-table.component';
 import { CatalogService } from '../catalog.service';
 
 @Component({

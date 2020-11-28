@@ -1,8 +1,7 @@
-import { Component, OnInit, Inject, ɵConsole } from '@angular/core';
-import { ActionsToolbarButtons, ActionsToolbarConfig } from 'src/app/components/actions-toolbar/actions-toolbar-config';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { DataTableComponent } from 'src/app/components/data-table/data-table.component';
+import { ActionsToolbarButtons, ActionsToolbarConfig } from 'src/app/shared/components/actions-toolbar/actions-toolbar-config';
 
 const CATEGORIES: string[] = [
   'Eletronics', 'TV', 'Computer', 'jewelry'
@@ -19,8 +18,7 @@ export class CatalogEditComponent implements OnInit {
   
   constructor(private router: Router, 
               private activatedRoute: ActivatedRoute, 
-              public dialog: MatDialog, 
-              @Inject(DataTableComponent) public dataTable: DataTableComponent) {
+              public dialog: MatDialog) {
    }
 
   ngOnInit(): void {

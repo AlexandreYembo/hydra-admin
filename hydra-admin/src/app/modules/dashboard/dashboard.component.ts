@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
-import { DataTableColumns } from 'src/app/components/data-table/data-table-datasource';
-import { DataTableComponent } from 'src/app/components/data-table/data-table.component';
+import { DataTableColumns } from 'src/app/shared/components/data-table/data-table-datasource';
+import { DataTableComponent } from 'src/app/shared/components/data-table/data-table.component';
 import { PlaceHolderDirective } from 'src/app/shared/components/placeholder/placeholder.directive';
 
 @Component({
