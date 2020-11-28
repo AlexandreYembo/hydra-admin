@@ -1,6 +1,5 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { DataTable, DataTableColumns } from 'src/app/components/data-table/data-table-datasource';
+import { DataTableColumns } from 'src/app/components/data-table/data-table-datasource';
 import { DataTableComponent } from 'src/app/components/data-table/data-table.component';
 import { PlaceHolderDirective } from 'src/app/shared/components/placeholder/placeholder.directive';
 
@@ -12,9 +11,7 @@ import { PlaceHolderDirective } from 'src/app/shared/components/placeholder/plac
 export class DashboardComponent implements OnInit {
   @ViewChild(PlaceHolderDirective) dataTableHost: PlaceHolderDirective;
 
-  constructor(private router: Router, 
-              private activatedRoute: ActivatedRoute,
-              private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit(): void {
   }
@@ -27,8 +24,7 @@ export class DashboardComponent implements OnInit {
 
     const dataTableComponentRef = hostViewContainerRef.createComponent(gridComponentFactory);
     
-    dataTableComponentRef.instance.dataTable = new DataTable();
-    dataTableComponentRef.instance.dataTable.columns = this.createColumns();
+    dataTableComponentRef.instance.configure(this.createColumns());
   }
 
   createColumns(): any{
