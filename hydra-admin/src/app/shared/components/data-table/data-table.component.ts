@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, Input} from '@angular/core';
+import {Component, OnInit, ViewChild, Input, Injectable} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -11,6 +11,8 @@ import { ActionsToolbarConfig, ActionsToolbarButtons } from '../actions-toolbar/
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.scss']
 })
+
+@Injectable({providedIn: 'root'})
 export class DataTableComponent implements OnInit {
   displayedColumns: string[];
   columns: DataTableColumns[];
@@ -24,8 +26,6 @@ export class DataTableComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(public router: Router, public activatedRoute: ActivatedRoute){}
-
-
 
   ngOnInit() {
     this.dataTable?.dataSource?.subscribe(s => {
