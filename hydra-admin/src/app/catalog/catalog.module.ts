@@ -14,6 +14,7 @@ import { DataTableModule } from '../shared/components/data-table/data-table.modu
 import { CatalogEditComponent } from './catalog-edit/catalog-edit.component';
 import { CatalogListComponent } from './catalog-list/catalog-list.component';
 import { CatalogService } from './catalog.service';
+import { CatalogRoutingModule } from './catalog-routing.module';
 
 @NgModule({
     declarations:[
@@ -21,6 +22,7 @@ import { CatalogService } from './catalog.service';
         CatalogEditComponent
     ],
     imports: [
+        CatalogRoutingModule,
         CommonModule,
         DataTableModule,
         ActionsToolbarModule,
