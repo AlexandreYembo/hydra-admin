@@ -18,16 +18,15 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 
-import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.component';
 import { AuthComponent } from 'src/app/auth/auth.component';
 
 
-import { CatalogListModule } from 'src/app/modules/catalog/catalog-list/catalog-list.module';
-import { CatalogEditModule } from './modules/catalog/catalog-edit/catalog-edit.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptorService } from './auth/auth-http-interceptor.service';
 import { CookieService } from 'ngx-cookie-service';
 import { PlaceHolderDirective } from './shared/components/placeholder/placeholder.directive';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CatalogModule } from './catalog/catalog.module';
 
 @NgModule({
   declarations: [
@@ -44,8 +43,6 @@ import { PlaceHolderDirective } from './shared/components/placeholder/placeholde
     BrowserAnimationsModule,
     RouterModule,
     SharedModule,
-    CatalogListModule,
-    CatalogEditModule,
     MatSidenavModule,
     MatDividerModule,
     MatCardModule,
@@ -54,7 +51,8 @@ import { PlaceHolderDirective } from './shared/components/placeholder/placeholde
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    CatalogModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptorService, multi: true},
     CookieService],

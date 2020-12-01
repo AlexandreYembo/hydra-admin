@@ -1,11 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ActionsToolbarButtons, ActionsToolbarConfig } from 'src/app/shared/components/actions-toolbar/actions-toolbar-config';
-
-const CATEGORIES: string[] = [
-  'Eletronics', 'TV', 'Computer', 'jewelry'
-];
 
 @Component({
   selector: 'app-catalog-edit',
