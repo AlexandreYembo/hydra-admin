@@ -35,10 +35,7 @@ import { CatalogRoutingModule } from './catalog-routing.module';
         MatButtonModule,
         MatDialogModule,
     ],
-    providers:[CatalogService],
-    exports:[
-        CatalogListComponent,
-        CatalogEditComponent
-    ]
+    providers:[CatalogService]
+   
 })
 export class CatalogModule { }
