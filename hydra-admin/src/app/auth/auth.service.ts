@@ -7,7 +7,6 @@ import { AuthResponse } from './auth.reponse';
 import { User } from './user.model';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 
 @Injectable({providedIn: 'root'})
 export class AuthService extends BaseService {
