@@ -6,7 +6,7 @@ import { CatalogListComponent } from './catalog-list/catalog-list.component';
 
    const routes: Routes = [
     {
-        path: 'catalog',
+        path: '',
         children:[
             { path:'', component: CatalogListComponent, canActivate:[ AuthGuard ] },
             { path:'new', component: CatalogEditComponent, canActivate:[ AuthGuard ]  }

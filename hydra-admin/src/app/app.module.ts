@@ -14,7 +14,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { HttpClientModule } from '@angular/common/http';
 import { PlaceHolderDirective } from './shared/components/placeholder/placeholder.directive';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CatalogModule } from './catalog/catalog.module';
 import { CoreModule } from './core.module';
 import { AuthModule } from './auth/auth.module';
 
@@ -33,7 +32,6 @@ import { AuthModule } from './auth/auth.module';
     SharedModule,
     MatSidenavModule,
     MatDividerModule,
-    CatalogModule,
     AuthModule,
     CoreModule
   ],
