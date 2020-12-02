@@ -9,12 +9,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 
-import { ActionsToolbarModule } from '../shared/components/actions-toolbar/actions-toolbar.module';
-import { DataTableModule } from '../shared/components/data-table/data-table.module';
 import { CatalogEditComponent } from './catalog-edit/catalog-edit.component';
 import { CatalogListComponent } from './catalog-list/catalog-list.component';
 import { CatalogService } from './catalog.service';
 import { CatalogRoutingModule } from './catalog-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations:[
@@ -24,8 +23,6 @@ import { CatalogRoutingModule } from './catalog-routing.module';
     imports: [
         CatalogRoutingModule,
         CommonModule,
-        DataTableModule,
-        ActionsToolbarModule,
         MatDividerModule,
         MatFormFieldModule,
         MatInputModule,
@@ -34,6 +31,7 @@ import { CatalogRoutingModule } from './catalog-routing.module';
         MatIconModule,
         MatButtonModule,
         MatDialogModule,
+        SharedModule
     ],
     providers:[CatalogService]
    

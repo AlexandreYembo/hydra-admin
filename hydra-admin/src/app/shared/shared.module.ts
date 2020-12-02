@@ -10,13 +10,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatInputModule} from '@angular/material/input';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+
 import { RouterModule } from '@angular/router';
+// import { ActionsToolbarModule } from './components/actions-toolbar/actions-toolbar.module';
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { ActionsToolbarComponent } from './components/actions-toolbar/actions-toolbar.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    ActionsToolbarComponent,
+    DataTableComponent
   ],
   imports: [
     CommonModule,
@@ -27,12 +37,20 @@ import { RouterModule } from '@angular/router';
     FlexLayoutModule,
     MatMenuModule,
     MatListModule,
-    RouterModule
+    MatInputModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatIconModule,
+    MatTableModule,
+    // ActionsToolbarModule,
+    RouterModule,
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    ActionsToolbarComponent,
+    DataTableComponent
   ]
 })
 export class SharedModule { }
