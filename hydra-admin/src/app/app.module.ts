@@ -1,13 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatCardModule} from '@angular/material/card';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {ReactiveFormsModule} from '@angular/forms';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,25 +11,21 @@ import { SharedModule } from 'src/app/shared.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 
-import { AuthComponent } from 'src/app/auth/auth.component';
-
-
 import { HttpClientModule } from '@angular/common/http';
 import { PlaceHolderDirective } from './shared/components/placeholder/placeholder.directive';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CatalogModule } from './catalog/catalog.module';
 import { CoreModule } from './core.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    AuthComponent,
     PlaceHolderDirective
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
     HttpClientModule,  
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -44,14 +33,8 @@ import { CoreModule } from './core.module';
     SharedModule,
     MatSidenavModule,
     MatDividerModule,
-    MatCardModule,
-    MatTabsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSnackBarModule,
-    MatProgressSpinnerModule,
     CatalogModule,
+    AuthModule,
     CoreModule
   ],
   bootstrap: [AppComponent]
