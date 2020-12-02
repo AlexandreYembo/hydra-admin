@@ -11,7 +11,6 @@ import { MatDividerModule } from '@angular/material/divider';
 
 import { CatalogEditComponent } from './catalog-edit/catalog-edit.component';
 import { CatalogListComponent } from './catalog-list/catalog-list.component';
-import { CatalogService } from './catalog.service';
 import { CatalogRoutingModule } from './catalog-routing.module';
 import { SharedModule } from '../shared.module';
 
@@ -32,8 +31,6 @@ import { SharedModule } from '../shared.module';
         MatButtonModule,
         MatDialogModule,
         SharedModule
-    ],
-    providers:[CatalogService]
-   
+    ]
 })
 export class CatalogModule { }
