@@ -1,3 +1,7 @@
 
 .DS_Store
-hydra-admin/dist/hydraAdmin/3rdpartylicenses.txt
+hydra-admin/src/.firebase/hosting.ZGlzdC9oeWRyYUFkbWlu.cache
+hydra-admin/src/.firebaserc
+hydra-admin/src/firebase.json
+hydra-admin/dist
+hydra-admin/node_modules

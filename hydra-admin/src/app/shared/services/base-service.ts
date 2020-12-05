@@ -1,14 +1,12 @@
-import { apis } from '../../../environments/apis';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-
+import { environment } from 'src/environments/environment';
 
 export abstract class BaseService {
     constructor(protected http: HttpClient, public service: string) { }
  
     get apiUrl(): string {
-        return apis[this.service]
+        return environment.api[this.service]
     } 
 
     public get<T>(endpoint: string, par?: object): Observable<T> {
