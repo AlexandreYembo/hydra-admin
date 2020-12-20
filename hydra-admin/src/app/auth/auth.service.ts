@@ -101,20 +101,20 @@ export class AuthService extends BaseService {
     }
 
     private handleError(errorRes: HttpErrorResponse){
-        var error = "An unknown error occurred!";
+        var error = ["An unknown error occurred!"];
 
         if(errorRes.error 
             && errorRes.error.errors 
             && errorRes.error.errors.Messages 
             && errorRes.error.errors.Messages.length > 0){
-                error = errorRes.error.errors.Messages[0];
+                error = errorRes.error.errors.Messages;
         }
 
         if(errorRes.error 
             && errorRes.error.errors 
             && errorRes.error.errors.Password 
             && errorRes.error.errors.Password.length > 0){
-            error = errorRes.error.errors.Password[0];
+                error = errorRes.error.errors.Password;
         }
 
         return throwError(error);
